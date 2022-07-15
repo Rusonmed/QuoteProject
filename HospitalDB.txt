@@ -1,0 +1,137 @@
+--create database Hospital
+--use Hospital
+
+/*CREATING INDEPENDENT TABLES FIRST*/
+
+--create table Patients
+--(
+--Id int IDENTITY(1,1) primary key not null,
+--name varchar(50) not null,
+--age int not null,
+--gender varchar (50) not null,
+--blood_group varchar(50),
+--phone bigint)
+
+--create table Doctors
+--(
+--Id int identity(1,1) primary key not null,
+--name varchar(50) not null,
+--designation varchar(50),
+--specialization varchar (50)
+--);
+
+--create table Examinations
+--(
+--Id int identity(1,1) primary key not null,
+--name varchar(50) not null,
+--price int not null
+--);
+
+/*CREATING DEPENDENT TABLES SECOND*/
+
+--create table Patient_Visits
+--(
+--id int identity(1,1) primary key not null,
+--patient_id int foreign key references Patients(id),
+--visit_time datetime not null
+--);
+
+/*MANY-TO-MANY*/
+
+--create table Patient_Examination
+--(
+--id int identity(1,1) Primary Key not null,
+--patient_id int foreign key references Patients(id),
+--examination_id int foreign key references Examinations(id),
+--result varchar(50)
+--);
+
+--create table Treatment
+--(
+--id int identity(1,1) primary key not null,
+--patient_id int foreign key references Patients(id),
+--doctor_id int foreign key references Doctors(id),
+--remarks varchar(50)
+--);
+
+/*INSERT VALUES*/
+
+--insert into Patients
+--values ('Tom',20,'Male','O+',123589746),
+--('Kimer',45,'Female','AB+',4568412),
+--('James',16,'Male','O-',78452369),
+--('Matty',43,'Felmale','B+',15789634),
+--('Sal',24,'Male','O+',48963214)
+
+--insert into Examinations
+--values ('XRay',750),
+--('Ultrasound',600),
+--('LFT',800),
+--('RFT',900),
+--('HIV',500)
+
+--insert into Doctors
+--values ('Orland','MS','Nephrology'),
+--('Mark','HOD','Pathology'),
+--('Evens','Professor','Cardiology'),
+--('John','Demonstrator','Pediatrician'),
+--('Fred','DMS','Neurology')
+
+--insert into Patient_Visits
+--values (1,'19-Apr-2012'),
+--(2,'19-May-2012'),
+--(4,'25-Feb-2013'),
+--(2,'21-Sep-2015')
+
+--insert into Treatment
+--values (1,3,'Fit'),
+--(1,3,'Good condition'),
+--(2,3,'Needs more treatment'),
+--(1,4,'Referred for XRay'),
+--(5,2,'Fit')
+
+--insert into Patient_Examination
+--values (1,3,'Positive'),
+--(1,3,'Negative'),
+--(2,5,'Positive'),
+--(1,4,'Negative'),
+--(2,3,'Negative')
+
+--select * from patients
+
+/*SUB-QUERY*/
+
+--declare @avgage int
+--select @avgage=avg(age) from patients
+--select * from patients where age>@avgage
+
+--select * from patients
+--where age > (select avg(age) from patients)
+
+
+/*INDEX*/
+
+--create index pat_gender on patients (gender);
+
+/*STORED PROCEDURE*/
+
+--go
+--create procedure spListPatients as
+--begin
+--select * from patients order by name
+--end
+
+--exec spListPatients
+
+/*STORED PROCEDURE FOR INSERTING RECORDS*/
+
+--CREATE PROCEDURE spInsertPatient
+--(@Name varchar(50),@Age int,@Gender varchar(50)
+--,@Blood_Group varchar(50),@Phone int)
+--as
+--begin
+--insert into patients
+--values(@Name,@Age,@Gender,@Blood_Group,@Phone)
+--end
+
+--exec spinsertpatient 'Julian',25,'Male','O+',45783126
