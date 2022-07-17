@@ -1,0 +1,9 @@
+.quote-container{
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+.quote-container .tip h3, .quote-container .tip h4{
+    display: inline-block;
+}
