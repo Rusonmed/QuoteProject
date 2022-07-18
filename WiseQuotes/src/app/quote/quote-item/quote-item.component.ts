@@ -8,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class QuoteItemComponent implements OnInit {
   public tip!: string;
   public book!: string;
+  public tipcode!: string
+  public tipauthor!:string
+  public favorite!: boolean;
   constructor() { }
 
   ngOnInit() {
     this.tip ="Use Many Different Learning Strategies";
     this.book="Make it Stick";
+    this.tipcode ="Learning Tips";
+    this.tipauthor ="Aristotile";
+    this.favorite = false;
+  }
+
+  toggleFavorite(){
+    console.log('We are toggling the favorite state for this quote');
+    this.favorite = !this.favorite;
   }
 
 }
