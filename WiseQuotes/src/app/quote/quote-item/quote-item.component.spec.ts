@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { QuoteItemComponent } from './quote-item.component';
 
 describe('QuoteItemComponent', () => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Quote } from 'src/app/model/quote';
 
 @Component({
   selector: 'app-quote-item',
@@ -6,20 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quote-item.component.css']
 })
 export class QuoteItemComponent implements OnInit {
-  public tip!: string;
-  public book!: string;
-  public tipcode!: string
-  public tipauthor!:string
-  public favorite!: boolean;
-  constructor() { }
+public quote!: Quote
+public favorite!:boolean
+constructor() { }
 
   ngOnInit() {
-    this.tip ="Use Many Different Learning Strategies";
-    this.book="Make it Stick";
-    this.tipcode ="Learning Tips";
-    this.tipauthor ="Aristotile";
-    this.favorite = false;
-  }
+this.quote = new Quote('Use Many Different Learning Strategies','Maki it Stick');  }
 
   toggleFavorite(){
     console.log('We are toggling the favorite state for this quote');
